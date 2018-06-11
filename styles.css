@@ -48,7 +48,7 @@ div {
 	border: var(--border-weight) var(--border-style) var(--border-color);
 	border-radius: var(--border-radius);
 	margin: var(--div-margin-vert) auto;
-	width: var(--div-width);
+	width: calc(var(--div-width) - 2 * var(--pic-div-padding-hor));
 
 	background-color: var(--div-bg-color);
 }
@@ -99,7 +99,7 @@ p {
 	color: var(--font-color);
 
 	font-family: var(--font-family);
-	font-size: var(--h2-size);
+	font-size: var(--text-size);
 	line-height: var(--line-height);
 }
 
@@ -110,6 +110,7 @@ a {
 /* a special kind of div to hold my name as the page title */
 #name {
 	display: flex;
+	width: var(--div-width);
 	height: var(--name-div-height);
 	align-items: center;
 	justify-content: center;
