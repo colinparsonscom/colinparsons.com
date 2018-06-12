@@ -7,17 +7,17 @@
 	--div-margin-hor: 0.75em;
 	--div-margin-vert: 0.75em;
 	--div-width: 60em;
-	--abs-div-cutoff: 60em; /* this must equal the preceding entry so that we can handle scaling less and greater than given div-width */
-	--small-div-cutoff: 30em;
 	--pic-div-padding-hor: 2em;
 	--pic-div-padding-vert: 2em;
 	--text-div-padding-hor: 2em;
 	--text-div-padding-vert: 2em;
+	--small-div-cutoff: 30em;
 
 	/* specific div properties */
 	--name-div-height: 6em;
 	--pics0-container-ratio: .33;
-	--pics0-margin: .005;
+	--pics0-img-width: .33;
+	--pics0-margin-width: .005;
 	--pics1-container-ratio: .6667;
 	
 	/* color scheme */
@@ -35,6 +35,7 @@
 	--text-size: 1.25em;
 }
 
+/* now we can actually start defining how these features look */
 body {
 	margin: 0;
 	padding: 0;
@@ -48,7 +49,6 @@ div {
 	border: var(--border-weight) var(--border-style) var(--border-color);
 	border-radius: var(--border-radius);
 	margin: var(--div-margin-vert) auto;
-	width: calc(var(--div-width) - 2 * var(--pic-div-padding-hor));
 
 	background-color: var(--div-bg-color);
 }
@@ -56,11 +56,13 @@ div {
 /* divs that have text */
 div.text-div {
 	padding: var(--text-div-padding-vert) var(--text-div-padding-hor);
+	width: calc(var(--div-width) - 2 * (var(--text-div-padding-hor) + var(--div-margin-hor)));
 }
 
 /* divs that have pics are really divs that have a "container" div inside */
 div.pic-div {
 	padding: var(--pic-div-padding-vert) var(--pic-div-padding-hor);
+	width: calc(var(--div-width) - 2 * (var(--pic-div-padding-hor) + var(--div-margin-hor)));
 	position: relative;
 }
 
@@ -70,6 +72,7 @@ div.container-div {
 	margin: 0;
 	padding: 0;
 	position: absolute;
+	width: calc(var(--div-width) - 2 * (var(--pic-div-padding-hor) + var(--div-margin-hor)));
 
 	border: none;
 
@@ -110,7 +113,7 @@ a {
 /* a special kind of div to hold my name as the page title */
 #name {
 	display: flex;
-	width: var(--div-width);
+	width: calc(var(--div-width) - 2 * var(--div-margin-hor));
 	height: var(--name-div-height);
 	align-items: center;
 	justify-content: center;
@@ -124,12 +127,12 @@ a {
 /* it handles scaling so that the ratio of pictures stays constant, even though many properties of divs (margins, padding, and borders) are defined in absolute terms */
 /* basically, it ensures the pic-div has the right size in order to hold a container div with the right ratio */
 #pics0 {
-	height: calc(var(--pics0-container-ratio) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight)) + 2 * var(--pic-div-padding-vert));
+	height: calc(var(--pics0-container-ratio) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 }
 
 #headshotLowRes {
-	margin-right: calc(var(--pics0-margin) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight)) + 2 * var(--pic-div-padding-vert));
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 
 	filter: blur(var(--blur-dist));
 
@@ -138,8 +141,8 @@ a {
 }
 
 #profileLowRes {
-	margin-right: calc(var(--pics0-margin) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight)) + 2 * var(--pic-div-padding-vert));
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 
 	filter: blur(var(--blur-dist));
 
@@ -148,7 +151,7 @@ a {
 }
 
 #hikingLowRes {
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 
 	filter: blur(var(--blur-dist));
 
@@ -157,31 +160,31 @@ a {
 }
 
 #headshotHighRes {
-	margin-right: calc(var(--pics0-margin) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight)) + 2 * var(--pic-div-padding-vert));
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 
 	content: url("http://colinparsons.me/ColinParsonsHeadshotHighRes.jpg");
 }
 
 #profileHighRes {
-	margin-right: calc(var(--pics0-margin) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight)) + 2 * var(--pic-div-padding-vert));
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 
 	content: url("http://colinparsons.me/ColinParsonsProfileHighRes.jpg");
 }
 
 #hikingHighRes {
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 
 	content: url("http://colinparsons.me/ColinParsonsHikingHighRes.jpg");
 }
 
 #pics1 {
-	height: calc(var(--pics1-container-ratio) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight)) + 2 * var(--pic-div-padding-vert));
+	height: calc(var(--pics1-container-ratio) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
 }
 
 #tangoLowRes {
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor)));
 
 	filter: blur(var(--blur-dist));
 
@@ -190,17 +193,24 @@ a {
 }
 
 #tangoHighRes {
-	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor) - var(--border-weight));
+	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor)));
 
 	content: url("http://colinparsons.me/ColinParsonsTangoHighRes.jpg");
 }
 
+/* note that the screen comparison can't be done with variables or expressions; media relies on the DOM and device */
+/* we must instead hand-code in our values */
+/* hence 61.5 = (default div width) + 2 * (horizontal margin) */
+/* for smaller screens, 30em is often 480px, which is device max width */
+/* some users with more comfort reading smaller text will be fine with the tablet version on their phones */
+/* that's why we define max-width in terms of em rather than px for our smallest site size */
+
 /* once we drop beneath our absolutely defined div width (with margins), we'll scale some things down a bit */
 /* we eliminate our absolutely defined div width, with our divs expanding to fill the window */
 /* this handles tablets */
-@media screen and (max-width: calc(var(--abs-div-cutoff) + 2 * var(--div-margin-hor))) {
+@media screen and (max-width: 61.5em) {
 	:root {
-		--div-width: auto;
+		--div-width: 100vw;
 		--pic-div-padding-hor: 1.5em;
 		--pic-div-padding-vert: 1.5em;
 		--text-div-padding-hor: 1.75em;
@@ -216,9 +226,9 @@ a {
 
 /* once we drop to tiny width, it's time to scale some things down a bit again */
 /* this handles phones */
-@media screen and (max-width: var(--small-div-cutoff)) {
+@media screen and (max-width: 30em) {
 	:root {
-		--div-width: auto;
+		--div-width: 100vw;
 		--pic-div-padding-hor: 1em;
 		--pic-div-padding-vert: 1em;
 		--text-div-padding-hor: 1.5em;
