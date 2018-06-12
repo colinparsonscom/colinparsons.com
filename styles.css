@@ -30,7 +30,7 @@
 	--font-family: 'Georgia';
 	--h1-size: 4em;
 	--h2-size: 2.5em;
-	--h2-text-dist: 0.75em;
+	--h2-text-dist: 1em;
 	--line-height: 1.5em;
 	--text-size: 1.25em;
 }
@@ -91,14 +91,18 @@ h1 {
 
 h2 {
 	margin-bottom: var(--h2-text-dist);
+
 	color: var(--font-color);
 
 	font-family: var(--font-family);
 	font-size: var(--h2-size);
 	font-weight: normal;
+	line-height: 0;
 }
 
 p {
+	margin-bottom: calc(var(--text-div-padding-vert) - var(--line-height));
+
 	color: var(--font-color);
 
 	font-family: var(--font-family);
