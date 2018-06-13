@@ -1,0 +1,247 @@
+:root {
+	/* page properties */
+	--blur-dist: 0.1em;
+	--border-style: outset;
+	--border-radius: 1em;
+	--border-weight: 0.1em;
+	--div-margin-hor: 0.75em;
+	--div-margin-vert: 0.75em;
+	--div-width: 60em;
+	--pic-div-padding-hor: 2em;
+	--pic-div-padding-vert: 2em;
+	--text-div-padding-hor: 2em;
+	--text-div-padding-vert: 2em;
+	--small-div-cutoff: 30em;
+
+	/* specific div properties */
+	--name-div-height: 6em;
+	--pics0-container-ratio: .33;
+	--pics0-img-width: .33;
+	--pics0-margin-width: .005;
+	--pics1-container-ratio: .6667;
+	
+	/* color scheme */
+	--border-color: #f2f2f2;
+	--div-bg-color: #fffff5;
+	--font-color: #262626;
+	--main-bg-color: #ffffeb;
+
+	/* font properties */
+	--font-family: 'Georgia';
+	--h1-size: 4em;
+	--h2-size: 2.5em;
+	--h2-text-dist: 1em;
+	--line-height: 1.5em;
+	--text-size: 1.25em;
+}
+
+/* now we can actually start defining how these features look */
+body {
+	margin: 0;
+	padding: 0;
+
+	background-color: var(--main-bg-color);
+
+	font-size: 100%;
+}
+
+div {	
+	border: var(--border-weight) var(--border-style) var(--border-color);
+	border-radius: var(--border-radius);
+	margin: var(--div-margin-vert) auto;
+
+	background-color: var(--div-bg-color);
+}
+
+/* divs that have text */
+div.text-div {
+	padding: var(--text-div-padding-vert) var(--text-div-padding-hor);
+	width: calc(var(--div-width) - 2 * (var(--text-div-padding-hor) + var(--div-margin-hor)));
+}
+
+/* divs that have pics are really divs that have a "container" div inside */
+div.pic-div {
+	padding: var(--pic-div-padding-vert) var(--pic-div-padding-hor);
+	width: calc(var(--div-width) - 2 * (var(--pic-div-padding-hor) + var(--div-margin-hor)));
+	position: relative;
+}
+
+/* this "container" div holds the pictures and handles scaling for a pic-div */
+div.container-div {
+	border-radius: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	width: calc(var(--div-width) - 2 * (var(--pic-div-padding-hor) + var(--div-margin-hor)));
+
+	border: none;
+
+	background-color: transparent;
+}
+
+h1 {
+	text-align: center;
+
+	color: var(--font-color);
+	
+	font-family: var(--font-family);
+	font-size: var(--h1-size);
+	font-weight: normal;
+}
+
+h2 {
+	margin-bottom: var(--h2-text-dist);
+
+	color: var(--font-color);
+
+	font-family: var(--font-family);
+	font-size: var(--h2-size);
+	font-weight: normal;
+	line-height: 0;
+}
+
+p {
+	margin-bottom: calc(var(--text-div-padding-vert) - var(--line-height));
+
+	color: var(--font-color);
+
+	font-family: var(--font-family);
+	font-size: var(--text-size);
+	line-height: var(--line-height);
+}
+
+a {
+	color: var(--font-color);
+}
+
+/* a special kind of div to hold my name as the page title */
+#name {
+	display: flex;
+	width: calc(var(--div-width) - 2 * var(--div-margin-hor));
+	height: var(--name-div-height);
+	align-items: center;
+	justify-content: center;
+}
+
+#nameLink {
+	text-decoration: none;
+}
+
+/* variations on this formula are repeated throughout the rest of this file */
+/* it handles scaling so that the ratio of pictures stays constant, even though many properties of divs (margins, padding, and borders) are defined in absolute terms */
+/* basically, it ensures the pic-div has the right size in order to hold a container div with the right ratio */
+#pics0 {
+	height: calc(var(--pics0-container-ratio) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+}
+
+#headshotLowRes {
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+
+	filter: blur(var(--blur-dist));
+
+	alt: "headshot";
+	content: url("http://colinparsons.me/images/ColinParsonsHeadshotLowRes.jpg");
+}
+
+#profileLowRes {
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+
+	filter: blur(var(--blur-dist));
+
+	alt: "profile";
+	content: url("http://colinparsons.me/images/ColinParsonsProfileLowRes.jpg");
+}
+
+#hikingLowRes {
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+
+	filter: blur(var(--blur-dist));
+
+	alt: "hiking";
+	content: url("http://colinparsons.me/images/ColinParsonsHikingLowRes.jpg");
+}
+
+#headshotHighRes {
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+
+	content: url("http://colinparsons.me/images/ColinParsonsHeadshotHighRes.jpg");
+}
+
+#profileHighRes {
+	margin-right: calc(var(--pics0-margin-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+
+	content: url("http://colinparsons.me/images/ColinParsonsProfileHighRes.jpg");
+}
+
+#hikingHighRes {
+	width: calc(var(--pics0-img-width) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+
+	content: url("http://colinparsons.me/images/ColinParsonsHikingHighRes.jpg");
+}
+
+#pics1 {
+	height: calc(var(--pics1-container-ratio) * (var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor))));
+}
+
+#tangoLowRes {
+	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor)));
+
+	filter: blur(var(--blur-dist));
+
+	alt: "tango";
+	content: url("http://colinparsons.me/images/ColinParsonsTangoLowRes.jpg");
+}
+
+#tangoHighRes {
+	width: calc(var(--div-width) - 2 * (var(--div-margin-hor) + var(--pic-div-padding-hor)));
+
+	content: url("http://colinparsons.me/images/ColinParsonsTangoHighRes.jpg");
+}
+
+/* note that the screen comparison can't be done with variables or expressions; media relies on the DOM and device */
+/* we must instead hand-code in our values */
+/* hence 61.5 = (default div width) + 2 * (horizontal margin) */
+/* for smaller screens, 30em is often 480px, which is device max width */
+/* some users with more comfort reading smaller text will be fine with the tablet version on their phones */
+/* that's why we define max-width in terms of em rather than px for our smallest site size */
+
+/* once we drop beneath our absolutely defined div width (with margins), we'll scale some things down a bit */
+/* we eliminate our absolutely defined div width, with our divs expanding to fill the window */
+/* this handles tablets */
+@media screen and (max-width: 61.5em) {
+	:root {
+		--div-width: 100vw;
+		--pic-div-padding-hor: 1.5em;
+		--pic-div-padding-vert: 1.5em;
+		--text-div-padding-hor: 1.75em;
+		--text-div-padding-vert: 1.75em;
+
+		--name-div-height: 4.5em;
+
+		--h1-size: 3em;
+		--h2-size: 1.75em;
+		--text-size: 1.10em;
+	}
+}
+
+/* once we drop to tiny width, it's time to scale some things down a bit again */
+/* this handles phones */
+@media screen and (max-width: 30em) {
+	:root {
+		--div-width: 100vw;
+		--pic-div-padding-hor: 1em;
+		--pic-div-padding-vert: 1em;
+		--text-div-padding-hor: 1.5em;
+		--text-div-padding-vert: 1.5em;
+
+		--name-div-height: 3.5em;
+
+		--h1-size: 2.5em;
+		--h2-size: 1.5em;
+		--text-size: 1em;
+	}
+}
