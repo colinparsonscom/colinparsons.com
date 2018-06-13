@@ -1,2 +1,2 @@
 # colinparsons.me
-Source code and assets for colinparsons.me. Property of Colin Parsons in 2018. Special thanks to realfavicongenerator.net for scripts to compile my favicon; other than those, these scripts are all my creations. Hope you enjoy!
+Source code and assets for colinparsons.me. Property of Colin Parsons in 2018. Special thanks to realfavicongenerator.net for scripts to compile my favicon; other than those scripts, this code is my creation.
