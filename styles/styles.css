@@ -55,7 +55,7 @@ a {
 }
 
 /* if we're desktop but our screen isn't tall enough, stop vertically centering */
-@media screen and (min-width: 66em) and (max-height: 45em) {
+@media screen and (min-width: 66em) {
   #content {
     position: relative;
     width: 62em;
