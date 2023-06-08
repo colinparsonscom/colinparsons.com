@@ -54,27 +54,6 @@ a {
   margin: 1em;
 }
 
-/* if we're desktop and our screen is sufficiently tall, vertically center */
-@media screen and (min-width: 66em) and (min-height: 45em) {
-  #content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  #desktopimage {
-    width: 20em;
-    height: 20em;
-    float: left;
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-
-    content: url("../images/ColinParsons.png");
-  }
-}
-
 /* if we're desktop but our screen isn't tall enough, stop vertically centering */
 @media screen and (min-width: 66em) and (max-height: 45em) {
   #content {
