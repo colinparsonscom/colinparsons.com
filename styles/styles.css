@@ -43,20 +43,30 @@ img {
 }
 
 .written-title {
-  margin: 6em 0 0 calc((100vw - (20em + 3em + 40em)) / 2 + 20em + 3em);
+  margin: 0;
 }
 
 .image-container {
   width: 20em;
   height: 20em;
   position: fixed;
-  margin: calc(50vh - (6em + 3em + 20em / 2)) 0 0
-    calc((100vw - (20em + 3em + 40em)) / 2);
+  top: max(6rem, calc(50vh - 10em));
+  left: calc((100vw - (20em + 3em + 40em)) / 2);
+}
+
+.text-column {
+  margin-left: calc((100vw - (20em + 3em + 40em)) / 2 + 20em + 3em);
+  width: 40em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 6rem 0;
+  box-sizing: border-box;
 }
 
 .written-content {
-  margin: 0 0 6em calc((100vw - (20em + 3em + 40em)) / 2 + 20em + 3em);
-  width: 40em;
+  margin: 0;
 }
 
 .footer-text {
@@ -70,6 +80,14 @@ img {
 
 /* if we have thin window or are on mobile, use modified layout */
 @media screen and (max-width: 72em) {
+  .text-column {
+    display: block;
+    margin-left: 0;
+    width: auto;
+    min-height: auto;
+    padding: 0;
+  }
+
   .written-title {
     margin: 1em;
   }
@@ -78,6 +96,8 @@ img {
     width: 10em;
     height: 10em;
     position: relative;
+    top: auto;
+    left: auto;
     margin: 1em;
   }
 
