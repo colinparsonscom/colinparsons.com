@@ -46,16 +46,30 @@ img {
   margin: 0;
 }
 
+.layout {
+  display: flex;
+  align-items: stretch;
+  gap: 3em;
+  margin-left: calc((100vw - (20em + 3em + 40em)) / 2);
+  width: calc(20em + 3em + 40em);
+}
+
+.left-column {
+  width: 20em;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .image-container {
   width: 20em;
   height: 20em;
-  position: fixed;
+  position: sticky;
   top: max(6rem, calc(50vh - 10em));
-  left: calc((100vw - (20em + 3em + 40em)) / 2);
 }
 
 .text-column {
-  margin-left: calc((100vw - (20em + 3em + 40em)) / 2 + 20em + 3em);
   width: 40em;
   display: flex;
   flex-direction: column;
@@ -80,9 +94,18 @@ img {
 
 /* if we have thin window or are on mobile, use modified layout */
 @media screen and (max-width: 72em) {
-  .text-column {
+  .layout {
     display: block;
     margin-left: 0;
+    width: auto;
+  }
+
+  .left-column {
+    display: block;
+  }
+
+  .text-column {
+    display: block;
     width: auto;
     min-height: auto;
     padding: 0;
