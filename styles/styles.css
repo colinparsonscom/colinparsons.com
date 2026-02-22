@@ -102,7 +102,7 @@ img {
   }
 
   .written-content {
-    margin: 0 1em 6em;
+    margin: 0 1em 1em;
     width: calc(100vw - 2em);
   }
 }
