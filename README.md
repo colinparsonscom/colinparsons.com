@@ -1,3 +1,3 @@
 # colinparsons.com
 
-My personal site design. Copyright Colin Parsons 2018-2023.
+My personal site. © Colin Parsons 2018-2026.
