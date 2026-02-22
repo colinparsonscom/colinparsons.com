@@ -95,23 +95,24 @@ img {
 /* if we have thin window or are on mobile, use modified layout */
 @media screen and (max-width: 72em) {
   .layout {
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin-left: 0;
     width: auto;
+    gap: 0;
   }
 
   .left-column {
+    order: 2;
     display: block;
   }
 
   .text-column {
-    display: block;
-    width: auto;
-    min-height: auto;
-    padding: 0;
+    display: contents;
   }
 
   .written-title {
+    order: 1;
     margin: 1em;
   }
 
@@ -125,6 +126,7 @@ img {
   }
 
   .written-content {
+    order: 3;
     margin: 0 1em 1em;
     width: calc(100vw - 2em);
   }
